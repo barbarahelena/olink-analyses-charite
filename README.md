@@ -19,7 +19,7 @@ In this script, we also select the proteins with less than 5 samples of interest
 For determining significant group differences, I used Welch's 2-sample t-tests for the 71 proteins. I applied FDR (aka Benjamini-Hochberg) multiple testing correction on the p-values to generate a q-value (= adjusted p-value). Thereafter, we calculate the group means, sd and n per protein.
 The table with the results from the t-tests and the means per group was saved as `proteins_ttest_diff.csv`.
 
-The expression data, so the protein expression values for all samples and the 71 proteins, were saved in `proteins_expression_data`. For the heatmaps and boxplots I used scaled expression data, so the expression that was measured scaled to a mean of 0 and sd of 1, to make the proteins easier to visualize in for instance a heatmap. For the PCA plot i used unscaled data, as scaling is already performed in the PCA function itself.
+The expression data, so the protein expression values for all samples and the 71 proteins, were saved in `proteins_expression_data.csv`. For the heatmaps and boxplots I used scaled expression data, so the expression that was measured scaled to a mean of 0 and sd of 1, to make the proteins easier to visualize in for instance a heatmap. For the PCA plot i used unscaled data, as scaling is already performed in the PCA function itself.
 
 ## PCA
 For the principal component analysis (PCA), I used the `prcomp` function with scaling and centering of the data. The first two principal components are plotted. I made a version with labels to make it easier to assess which samples are more alike.

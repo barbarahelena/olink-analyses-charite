@@ -67,10 +67,10 @@ for(a in 1:length(pval_sig)){
     res_box[[a]] <- pl
 }
 
-pdf("results/pdf/boxplots_proteins.pdf", width = 12, height = 12)
-gridExtra::grid.arrange(grobs=res_box, ncol=4)
+pdf("results/pdf/boxplots_proteins.pdf", width = 12, height = 8)
+gridExtra::grid.arrange(grobs=res_box, ncol=5)
 dev.off()
 
-svg("results/svg/boxplots_proteins.svg", width = 12, height = 12)
-gridExtra::grid.arrange(grobs=res_box, ncol=4)
+svg("results/svg/boxplots_proteins.svg", width = 12, height = 8)
+gridExtra::grid.arrange(grobs=res_box, ncol=5)
 dev.off()

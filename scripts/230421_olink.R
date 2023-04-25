@@ -104,12 +104,13 @@ ggplot(data = res_lod_long, aes(x = protein, y = number, fill = group)) +
     theme_Publication() +
     labs(y = "number below LOD", title = "Number of proteins below LOD per group")
 ggsave("results/proteins_belowLOD.pdf", width = 5, height = 8)
+ggsave("results/proteins_belowLOD.png", width = 5, height = 8)
 
 # How many proteins have less than 5 missings for the groups of interest (PBS + Strep)
 res_lod %>% filter((under_lod_PBS + under_lod_Strep) < 5) %>% nrow(.) # 71
 protein_lod <- res_lod %>% filter((under_lod_PBS + under_lod_Strep) < 5) %>% select(protein)
 
-# 
+# Filter data frame for proteins with too many below LOD - now only 71 of 92 left
 df3 <- df2 %>% select(sampleID, Treatment, all_of(protein_lod$protein)) %>% 
     filter(!str_detect(sampleID, "CONTROL")) %>% 
     mutate(Treatment = as.factor(Treatment)) %>% 

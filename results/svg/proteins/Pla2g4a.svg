@@ -47,16 +47,16 @@
 <line x1='158.34' y1='235.59' x2='158.34' y2='236.09' style='stroke-width: 1.07; stroke-linecap: butt;' />
 <polygon points='140.22,188.67 140.22,235.59 176.46,235.59 176.46,188.67 140.22,188.67 ' style='stroke-width: 1.07; stroke-linecap: butt; stroke-linejoin: miter; fill: #1E90FF; fill-opacity: 0.90;' />
 <line x1='140.22' y1='204.52' x2='176.46' y2='204.52' style='stroke-width: 2.13; stroke-linecap: butt; stroke-linejoin: miter;' />
-<circle cx='89.48' cy='91.38' r='1.95' style='stroke-width: 0.71; fill: #000000;' />
-<circle cx='83.04' cy='78.01' r='1.95' style='stroke-width: 0.71; fill: #000000;' />
-<circle cx='92.68' cy='81.73' r='1.95' style='stroke-width: 0.71; fill: #000000;' />
-<circle cx='79.24' cy='169.12' r='1.95' style='stroke-width: 0.71; fill: #000000;' />
-<circle cx='85.81' cy='126.33' r='1.95' style='stroke-width: 0.71; fill: #000000;' />
-<circle cx='159.30' cy='204.52' r='1.95' style='stroke-width: 0.71; fill: #000000;' />
-<circle cx='163.56' cy='236.09' r='1.95' style='stroke-width: 0.71; fill: #000000;' />
-<circle cx='163.12' cy='235.59' r='1.95' style='stroke-width: 0.71; fill: #000000;' />
-<circle cx='154.57' cy='188.67' r='1.95' style='stroke-width: 0.71; fill: #000000;' />
-<circle cx='162.60' cy='146.30' r='1.95' style='stroke-width: 0.71; fill: #000000;' />
+<circle cx='82.24' cy='91.38' r='1.95' style='stroke-width: 0.71; fill: #000000;' />
+<circle cx='84.01' cy='78.01' r='1.95' style='stroke-width: 0.71; fill: #000000;' />
+<circle cx='79.10' cy='81.73' r='1.95' style='stroke-width: 0.71; fill: #000000;' />
+<circle cx='89.48' cy='169.12' r='1.95' style='stroke-width: 0.71; fill: #000000;' />
+<circle cx='88.57' cy='126.33' r='1.95' style='stroke-width: 0.71; fill: #000000;' />
+<circle cx='156.72' cy='204.52' r='1.95' style='stroke-width: 0.71; fill: #000000;' />
+<circle cx='162.66' cy='236.09' r='1.95' style='stroke-width: 0.71; fill: #000000;' />
+<circle cx='153.96' cy='235.59' r='1.95' style='stroke-width: 0.71; fill: #000000;' />
+<circle cx='161.03' cy='188.67' r='1.95' style='stroke-width: 0.71; fill: #000000;' />
+<circle cx='159.95' cy='146.30' r='1.95' style='stroke-width: 0.71; fill: #000000;' />
 <rect x='42.36' y='45.61' width='159.46' height='199.55' style='stroke-width: 1.16; stroke: none;' />
 </g>
 <g clip-path='url(#cpMC4wMHwyMTYuMDB8MC4wMHwyODguMDA=)'>

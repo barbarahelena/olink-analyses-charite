@@ -162,6 +162,7 @@ df5_sel <- df5 %>%
 qval_sig <- "Gcg"
 pval_sig <- unique(df5_sel$protein)
 
+write_csv2(proteins, "data/proteins_metadata.csv")
 write_csv2(df5, "data/proteins_ttest_diff.csv")
 write_csv2(df3, "data/proteins_expression_data.csv")
 #write_csv2(df3_scale, "data/proteins_expression_scaled_data.csv")

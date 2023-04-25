@@ -116,7 +116,7 @@ for(a in 1:3){
 pl_boxsig <- gridExtra::grid.arrange(grobs=list(res_box[[1]], res_box[[2]], res_box[[3]]), ncol=3)
 
 ## PCA
-res.pca <- prcomp(df3[,4:ncol(df3)], scale = FALSE)
+res.pca <- prcomp(df3[,4:ncol(df3)], scale = TRUE)
 evar <- get_eigenvalue(res.pca)
 evar_pc12 <- c(evar$variance.percent[1], evar$variance.percent[2])
 evar_pc12 <- format(round(evar_pc12, 2), 2)
@@ -142,4 +142,3 @@ plot_grid(heatmap_grob, plot_pca, pl_boxsig, ncol = 2, nrow = 2,
           rel_widths = c(2, 1), labels = "AUTO")
 ggsave("results/pdf/plot_combi.pdf", width = 12, height = 8)
 ggsave("results/svg/plot_combi.svg", width = 12, height = 8)
-ggsave("results/tiff/plot_combi.tiff", width = 12, height = 8)

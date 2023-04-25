@@ -22,10 +22,13 @@ The table with the results from the t-tests and the means per group was saved as
 The expression data, so the protein expression values for all samples and the 71 proteins, were saved in `proteins_expression_data.csv`. For the heatmaps and boxplots I used scaled expression data, so the expression that was measured scaled to a mean of 0 and sd of 1, to make the proteins easier to visualize in for instance a heatmap. For the PCA plot i used unscaled data, as scaling is already performed in the PCA function itself.
 
 ## PCA
-For the principal component analysis (PCA), I used the `prcomp` function with scaling and centering of the data. The first two principal components are plotted. I made a version with labels to make it easier to assess which samples are more alike.
+For the principal component analysis (PCA) in `230425_pca.R`, I used the `prcomp` function with scaling and centering of the data. The first two principal components are plotted. I made a version with labels to make it easier to assess which samples are more alike.
 
 ## Heatmaps
-Heatmaps were drawn using the ComplexHeatmap R package (v2.12.1). I made different versions: different selections of proteins (all proteins, or sig based on p-value or q-value (= FDR-adjusted)); showing a scale for significance and without. 
+Heatmaps were drawn using the ComplexHeatmap R package (v2.12.1), see script `230425_heatmaps.R`. I made different versions: different selections of proteins (all proteins, or sig based on p-value or q-value (= FDR-adjusted)); showing a scale for significance and without. 
 
 ## Boxplots
-Boxplots were drawn with ggplot2 while comparing the two groups with `stat_compare_means` from the ggpubr package (v0.6.0) using t-tests.
+Boxplots were drawn with ggplot2 while comparing the two groups with `stat_compare_means` from the ggpubr package (v0.6.0) using t-tests. See script `230425_boxplots.R`.
+
+## Combination plots
+The three plots above were combined in one plot in the `230425_combineplots.R` script.

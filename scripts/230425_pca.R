@@ -40,7 +40,7 @@ theme_Publication <- function(base_size=12, base_family="sans") {
 df3 <- rio::import("data/proteins_expression_data.csv", format = "csv2")
 
 ### Principal component analysis ###
-res.pca <- prcomp(df3[,4:ncol(df3)], scale = FALSE)
+res.pca <- prcomp(df3[,4:ncol(df3)], center = TRUE, scale = TRUE)
 fviz_eig(res.pca)
 evar <- get_eigenvalue(res.pca)
 evar_pc12 <- c(evar$variance.percent[1], evar$variance.percent[2])
@@ -87,5 +87,5 @@ ggsave("results/svg/pca_plot_notitle.svg", width = 5, height = 5)
         guides(fill = guide_legend(override.aes = list(shape = 21, size = 2))) +
         stat_ellipse(aes(color = Treatment), type = "t", level = 0.9) +
         ggtitle("Principal component analysis"))
-ggsave("results/pca_plot_labeled.pdf", width = 5, height = 5)
-ggsave("results/pca_plot_labeled.svg", width = 5, height = 5)
+ggsave("results/pdf/pca_plot_labeled.pdf", width = 5, height = 5)
+ggsave("results/svg/pca_plot_labeled.svg", width = 5, height = 5)

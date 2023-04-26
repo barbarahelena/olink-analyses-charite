@@ -112,8 +112,8 @@ protein_lod <- res_lod %>% filter((under_lod_PBS + under_lod_Strep) < 5) %>% sel
 
 # Possibility to filter data frame for proteins with too many below LOD - now only 71 of 92 left
 df3 <- df2 %>% 
-    #select(sampleID, Treatment, all_of(protein_lod$protein)) %>% 
-    #filter(!str_detect(sampleID, "CONTROL")) %>% ## FILTERING IS OFF --> Olink recommends using all proteins (even if < LOD)
+    #select(sampleID, Treatment, all_of(protein_lod$protein)) %>% ## FILTERING IS OFF --> Olink recommends using all proteins (even if < LOD)
+    filter(!str_detect(sampleID, "CONTROL")) %>% 
     mutate(Treatment = as.factor(Treatment)) %>% 
     arrange(Treatment)
 

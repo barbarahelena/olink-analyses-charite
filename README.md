@@ -6,9 +6,7 @@ There were two conditions at 1 timepoint:
 - CI+S.pn. = Carotid Injury + streptococcus pneumonia, this is the infection group, N = 5
 
 ## Olink panel
-The Olink mouse exploratory panel (ww.olink.com/mouse-exploratory) was performed using EDTA plasma from the mice (40 ul samples). This panel includes 92 proteins of which the list can be found in the data folder. All samples passed quality control (QC). However, some of the proteins had values under the limit of detection (LOD). The LOD is defined by Olink as 3 times the standard deviation over background. In the data processing script, all proteins with more than 5 samples of the PBS/Strep groups combined under the LOD were removed before analysis.
-
-<b>Note that glucagon falls below the detection for 4/5 of the control (PBS) samples.</b>
+The Olink mouse exploratory panel (ww.olink.com/mouse-exploratory) was performed using EDTA plasma from the mice (40 ul samples). This panel includes 92 proteins of which the list can be found in the data folder. All samples passed quality control (QC). However, some of the proteins had values under the limit of detection (LOD). The LOD is defined by Olink as 3 times the standard deviation over background. Olink indicated that they see that values under lod do generally not increase false-positive findings, and they recommend using all data including those falling below their detection limits. Therefore, no filtering was applied to the proteins in this analysis.
 
 <img src="https://github.com/barbarahelena/olink-analyses-charite/blob/main/results/proteins_belowLOD.png" width = '300'>
 

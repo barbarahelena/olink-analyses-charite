@@ -4,6 +4,7 @@
 ## Libraries
 library(tidyverse)
 library(factoextra)
+library(ggrepel)
 
 theme_Publication <- function(base_size=12, base_family="sans") {
     library(grid)
@@ -40,7 +41,7 @@ theme_Publication <- function(base_size=12, base_family="sans") {
 df3 <- rio::import("data/proteins_expression_data.csv", format = "csv2")
 
 ### Principal component analysis ###
-res.pca <- prcomp(df3[,4:ncol(df3)], center = TRUE, scale = TRUE)
+res.pca <- prcomp(df3[,3:ncol(df3)], center = TRUE, scale = TRUE)
 fviz_eig(res.pca)
 evar <- get_eigenvalue(res.pca)
 evar_pc12 <- c(evar$variance.percent[1], evar$variance.percent[2])
@@ -89,3 +90,4 @@ ggsave("results/svg/pca_plot_notitle.svg", width = 5, height = 5)
         ggtitle("Principal component analysis"))
 ggsave("results/pdf/pca_plot_labeled.pdf", width = 5, height = 5)
 ggsave("results/svg/pca_plot_labeled.svg", width = 5, height = 5)
+

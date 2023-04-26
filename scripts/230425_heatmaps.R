@@ -105,6 +105,7 @@ pl2_anno <- draw(pl2, annotation_legend_list = list(lgd_qvalue, lgd_sig))
 pdf("results/pdf/230424_heatmap_Gcg.pdf", width = 7, height = 3)
 pl2_anno
 dev.off()
+
 svg("results/svg/230424_heatmap_Gcg.svg", width = 7, height = 3)
 pl2_anno
 dev.off()
@@ -204,6 +205,7 @@ dev.off()
 pdf("results/pdf/230424_heatmap_sig_noval.pdf", width = 8, height = 4)
 pl5
 dev.off()
+
 svg("results/svg/230424_heatmap_sig_noval.svg", width = 8, height = 4)
 pl5
 dev.off()

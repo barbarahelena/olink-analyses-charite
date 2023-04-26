@@ -110,9 +110,10 @@ ggsave("results/proteins_belowLOD.png", width = 5, height = 8)
 res_lod %>% filter((under_lod_PBS + under_lod_Strep) < 5) %>% nrow(.) # 71
 protein_lod <- res_lod %>% filter((under_lod_PBS + under_lod_Strep) < 5) %>% select(protein)
 
-# Filter data frame for proteins with too many below LOD - now only 71 of 92 left
-df3 <- df2 %>% select(sampleID, Treatment, all_of(protein_lod$protein)) %>% 
-    filter(!str_detect(sampleID, "CONTROL")) %>% 
+# Possibility to filter data frame for proteins with too many below LOD - now only 71 of 92 left
+df3 <- df2 %>% 
+    #select(sampleID, Treatment, all_of(protein_lod$protein)) %>% 
+    #filter(!str_detect(sampleID, "CONTROL")) %>% ## FILTERING IS OFF --> Olink recommends using all proteins (even if < LOD)
     mutate(Treatment = as.factor(Treatment)) %>% 
     arrange(Treatment)
 
@@ -120,7 +121,7 @@ df3_scale <- df3 %>% mutate(across(3:ncol(.), ~scale(.x)))
 
 df4 <- df3
 res <- c()
-for(a in 3:73){
+for(a in 3:ncol(df4)){
     df4$prot <- df4[,a]
     t.res <- t.test(df4$prot ~ df4$Treatment)
     res.row <- c(colnames(df4)[a], t.res$p.value)
@@ -144,7 +145,7 @@ res <- res %>% mutate(sig = case_when(
     p.value < 0.05 ~ paste0("*")
 ))
 
-df.sum <- df4 %>% group_by(Treatment) %>% summarise(across(2:72, 
+df.sum <- df4 %>% group_by(Treatment) %>% summarise(across(2:(ncol(.)-1), 
                                                     list(mean = ~mean(.x, na.rm = TRUE),
                                                          sd = ~sd(.x, na.rm = TRUE),
                                                          n = ~length(.x)), 

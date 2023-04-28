@@ -67,9 +67,9 @@ ggplot(df_sum, aes(x = log2fold, y = -log10(pval), color = group, label = delabe
     labs(x = "Log2 fold change in S.pn. compared to PBS",
          y = "-log10(p-value)") 
 
-ggsave("results/pdf/230428_volcanoplot_adjpval.pdf", width = 5, height = 5, device = "pdf")    
-ggsave("results/svg/230428_volcanoplot_adjpval.svg", width = 5, height = 5, device = "svg")
-ggsave("results/png/230428_volcanoplot_adjpval.png", width = 5, height = 5, device = "png") 
+ggsave("results/pdf/230428_volcanoplot_pval.pdf", width = 5, height = 5, device = "pdf")    
+ggsave("results/svg/230428_volcanoplot_pval.svg", width = 5, height = 5, device = "svg")
+ggsave("results/png/230428_volcanoplot_pval.png", width = 5, height = 5, device = "png") 
 
 set.seed(1234)
 ggplot(df_sum, aes(x = log2fold, y = -log10(pval), color = group, label = delabel2)) +

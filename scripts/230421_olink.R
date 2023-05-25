@@ -114,7 +114,11 @@ protein_lod <- res_lod %>% filter((under_lod_PBS + under_lod_Strep) < 5) %>% sel
 df3 <- df2 %>% 
     #select(sampleID, Treatment, all_of(protein_lod$protein)) %>% ## FILTERING IS OFF --> Olink recommends using all proteins (even if < LOD)
     filter(!str_detect(sampleID, "CONTROL")) %>% 
-    mutate(Treatment = as.factor(Treatment)) %>% 
+    mutate(Treatment = case_when(
+        Treatment == "CI+S.pn." ~ paste0("Pneumonia + CI"),
+        Treatment == "CI+PBS" ~ paste0("Control + CI")
+    ),
+        Treatment = as.factor(Treatment)) %>% 
     arrange(Treatment)
 
 df3_scale <- df3 %>% mutate(across(3:ncol(.), ~scale(.x)))
@@ -171,3 +175,26 @@ write_csv2(df3, "data/proteins_expression_data.csv")
 saveRDS(df5, "data/proteins_ttest_diff.RDS")
 saveRDS(df3, "data/proteins_expression_data.RDS")
 saveRDS(df3_scale, "data/proteins_expression_scaled_data.RDS")
+
+
+df4_ranks <- df4 %>% mutate(across(c(3:ncol(.)), ~rank(.x)))
+
+df.sum.ranks <- df4_ranks %>% group_by(Treatment) %>% summarise(across(2:(ncol(.)-1), 
+                                                                 list(mean = ~mean(.x, na.rm = TRUE),
+                                                                      sd = ~sd(.x, na.rm = TRUE),
+                                                                      n = ~length(.x)), 
+                                                                 .names = "{.col}_{.fn}"))
+
+df.sumlong.ranks <- df.sum.ranks %>% pivot_longer(2:ncol(.), names_to = c("protein", "stat"),
+                                      names_sep = "_",
+                                      values_to = "number") %>% 
+    pivot_wider(id_cols = 1:2, values_from = "number", names_from = "stat")
+
+df5.ranks <- left_join(res, df.sumlong.ranks, by = "protein") 
+df5_sel_ranks <- df5.ranks %>% 
+    filter(p.value < 0.05) %>% 
+    arrange(q.value)
+qval_sig <- "Gcg"
+pval_sig <- unique(df5_sel_ranks$protein)
+
+saveRDS(df5.ranks, "data/proteins_expression_ranks.RDS")

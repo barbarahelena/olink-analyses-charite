@@ -51,14 +51,14 @@ for(a in 1:length(pval_sig)){
     print(proteinname)
     df_protein <- df3_scale %>% select(Treatment, all_of(protein))
     df_protein$protein_y <- df_protein[,2]
-    comp <- list(c("CI+PBS", "CI+S.pn."))
+    comp <- list(c("Control + CI", "Pneumonia + CI"))
     (pl <- ggplot(data = df_protein, aes(x = Treatment, y = protein_y)) + 
             ggpubr::stat_compare_means(method = "t.test", label = "p.signif", comparisons = comp,
                                        hide.ns = TRUE, bracket.size = 0.5, size = 5) +
-            geom_boxplot(aes(fill = Treatment), color = "black", outlier.shape = NA, 
+            geom_boxplot(aes(color = Treatment), outlier.shape = NA, 
                          width = 0.5, alpha = 0.9) +
-            geom_jitter(color = "black", height = 0, width = 0.1) +
-            scale_fill_manual(guide = "none", values = c("darkgrey","dodgerblue")) +
+            geom_jitter(color = "grey5", height = 0, width = 0.1, alpha = 0.75) +
+            scale_color_manual(guide = "none", values = c("black","red")) +
             ylim(NA, max(df_protein$protein_y)*1.3) +
             labs(title=proteinname, y="Protein expression (z-score)") +
             theme_Publication())

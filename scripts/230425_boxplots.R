@@ -16,7 +16,7 @@ theme_Publication <- function(base_size=12, base_family="sans") {
                 panel.background = element_rect(colour = NA),
                 plot.background = element_rect(colour = NA),
                 panel.border = element_rect(colour = NA),
-                axis.title = element_text(face = "bold",size = rel(1)),
+                axis.title = element_text(face = "bold",size = rel(0.9)),
                 axis.title.y = element_text(angle=90,vjust =2),
                 axis.title.x = element_text(vjust = -0.2),
                 axis.text.x = element_text(size = rel(0.9)),

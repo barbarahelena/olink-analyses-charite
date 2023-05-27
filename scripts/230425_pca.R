@@ -58,7 +58,7 @@ df.tot <- left_join(df.pca, df3, by = "sampleID")
         xlab(x_axis) +
         ylab(y_axis) +
         theme_Publication() +
-        scale_color_manual(values = c("grey48", "dodgerblue")) +
+        scale_color_manual(values = c("black", "red")) +
         guides(fill = guide_legend(override.aes = list(shape = 21, size = 2))) +
         stat_ellipse(aes(color = Treatment), type = "t", level = 0.9) +
         ggtitle("Principal component analysis"))
@@ -71,7 +71,7 @@ ggsave("results/svg/pca_plot_unlabeled.svg", width = 5, height = 5)
         xlab(x_axis) +
         ylab(y_axis) +
         theme_Publication() +
-        scale_color_manual(values = c("grey48", "dodgerblue")) +
+        scale_color_manual(values = c("black", "red")) +
         guides(fill = guide_legend(override.aes = list(shape = 21, size = 2))) +
         stat_ellipse(aes(color = Treatment), type = "t", level = 0.9))
 ggsave("results/pdf/pca_plot_notitle.pdf", width = 5, height = 5)
@@ -84,7 +84,7 @@ ggsave("results/svg/pca_plot_notitle.svg", width = 5, height = 5)
         ylab(y_axis) +
         geom_text_repel(aes(label = sampleID)) +
         theme_Publication() +
-        scale_color_manual(values = c("grey48", "dodgerblue")) +
+        scale_color_manual(values = c("black", "red")) +
         guides(fill = guide_legend(override.aes = list(shape = 21, size = 2))) +
         stat_ellipse(aes(color = Treatment), type = "t", level = 0.9) +
         ggtitle("Principal component analysis"))

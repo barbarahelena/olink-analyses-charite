@@ -19,6 +19,7 @@ theme_Publication <- function(base_size=12, base_family="sans") {
                 axis.title = element_text(face = "bold",size = rel(1)),
                 axis.title.y = element_text(angle=90,vjust =2),
                 axis.title.x = element_text(vjust = -0.2),
+                axis.text.x = element_text(size = rel(0.9)),
                 axis.text = element_text(), 
                 axis.line = element_line(colour="black"),
                 axis.ticks = element_line(),
@@ -67,10 +68,12 @@ for(a in 1:length(pval_sig)){
     res_box[[a]] <- pl
 }
 
-pdf("results/pdf/boxplots_proteins.pdf", width = 10, height = 10)
+pdf("results/pdf/boxplots_proteins.pdf", width = 12, height = 10)
 gridExtra::grid.arrange(grobs=res_box, ncol=4)
 dev.off()
 
-svg("results/svg/boxplots_proteins.svg", width = 10, height = 10)
+svg("results/svg/boxplots_proteins.svg", width = 12, height = 10)
 gridExtra::grid.arrange(grobs=res_box, ncol=5)
 dev.off()
+
+

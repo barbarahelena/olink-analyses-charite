@@ -132,6 +132,7 @@ set.seed(1234)
 
 ggplot(df_sum, aes(x = rankdiff, y = -log10(pval), color = group, label = delabel)) +
     theme_Publication() +
+    theme(axis.title = element_text(size = rel(0.8))) +
     geom_hline(aes(yintercept = -log10(0.05)), color = "darkgrey", linetype = "dashed") +
     geom_segment( aes(x=rankdiff, xend=rankdiff, y=0, yend=-log10(pval)), color = "grey") +
     #geom_vline(aes(xintercept = -2), color = "darkgrey", linetype = "dashed") +
@@ -144,9 +145,8 @@ ggplot(df_sum, aes(x = rankdiff, y = -log10(pval), color = group, label = delabe
                     force = 1.5, max.overlaps = 10) +
     scale_color_manual(values = c(ggsci::pal_lancet()(2)), guide = "none") +
     #scale_x_continuous(limits = c(55, 40)) +
-    labs(x = "Rank for change in S.pn. compared to PBS",
+    labs(x = "Mean rank difference (pneumonia - control)",
          y = "-log10(p-value)") 
 
 ggsave("results/pdf/230525_volcanoplot_rank.pdf", width = 5, height = 5, device = "pdf")    
 ggsave("results/svg/230525_volcanoplot_rank.svg", width = 5, height = 5, device = "svg")
-ggsave("results/png/230525_volcanoplot_rank.png", width = 5, height = 5, device = "png") 

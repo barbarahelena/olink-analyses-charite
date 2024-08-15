@@ -6,18 +6,15 @@ There were two conditions at 1 timepoint:
 - Pneumonia + CI = Carotid Injury + streptococcus pneumonia, this is the infection group, N = 5
 
 ## Olink panel
-The Olink mouse exploratory panel (ww.olink.com/mouse-exploratory) was performed using EDTA plasma from the mice (40 ul samples). This panel includes 92 proteins of which the list can be found in the data folder. All samples passed quality control (QC). However, some of the proteins had values under the limit of detection (LOD). The LOD is defined by Olink as 3 times the standard deviation over background. Olink indicated that they see that values under lod do generally not increase false-positive findings, and they recommend using all data including those falling below their detection limits. Therefore, no filtering was applied to the proteins in this analysis.
-
-<img src="https://github.com/barbarahelena/olink-analyses-charite/blob/main/results/proteins_belowLOD.png" width = '300'>
+The Olink mouse exploratory panel (ww.olink.com/mouse-exploratory) was performed using EDTA plasma from the mice (40 ul samples). This panel includes 92 proteins of which the list can be found in the data folder. All samples passed quality control (QC).
 
 ## Explanation on data processing
-In the data processing script (`230421_olink.R`), first we open the sample data frame and protein expression data frame. From the protein expression table, we extract the proteins and their metadata (such as olink ID and Uniprot ID). These data were saved into `proteins_metadata.csv` in the data folder.
-In this script, we also select the proteins with less than 5 samples of interest (PBS or Strep) below the LOD.
+In the data processing script (`230421_olink.R`), first we open the sample data frame and protein expression data frame. From the protein expression table, we extract the proteins and their metadata (such as olink ID and Uniprot ID).
 
-For determining significant group differences, I used Welch's 2-sample t-tests for the 71 proteins. I applied FDR (aka Benjamini-Hochberg) multiple testing correction on the p-values to generate a q-value (= adjusted p-value). Thereafter, we calculate the group means, sd and n per protein.
-The table with the results from the t-tests and the means per group was saved as `proteins_ttest_diff.csv`.
+For determining significant group differences, I used 2-sided t-tests for the 92 proteins. I applied FDR (Benjamini-Hochberg) multiple testing correction on the p-values to generate a q-value (= adjusted p-value). Thereafter, we calculate the group means, sd and n per protein.
+The table with the results from the t-tests and the means per group was saved as `proteins_ttest_diff.csv` in the results folder.
 
-The expression data, so the protein expression values for all samples and the 71 proteins, were saved in `proteins_expression_data.csv`. For the heatmaps and boxplots I used scaled expression data, so the expression that was measured scaled to a mean of 0 and sd of 1, to make the proteins easier to visualize in for instance a heatmap. For the PCA plot i used unscaled data, as scaling is already performed in the PCA function itself.
+The expression data, so the protein expression values for all samples and the 92 proteins, were saved in `proteins_expression_data.csv`. For the heatmaps and boxplots I used scaled expression data, so the expression that was measured scaled to a mean of 0 and sd of 1, to make the proteins easier to visualize in for instance a heatmap. For the PCA plot i used unscaled data, as scaling is already performed in the PCA function itself.
 
 ## PCA
 For the principal component analysis (PCA) in `230425_pca.R`, I used the `prcomp` function with scaling and centering of the data. The first two principal components are plotted. I made a version with labels to make it easier to assess which samples are more alike.

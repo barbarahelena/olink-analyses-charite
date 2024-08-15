@@ -103,8 +103,8 @@ ggplot(data = res_lod_long, aes(x = protein, y = number, fill = group)) +
     coord_flip() +
     theme_Publication() +
     labs(y = "number below LOD", title = "Number of proteins below LOD per group")
-ggsave("results/proteins_belowLOD.pdf", width = 5, height = 8)
-ggsave("results/proteins_belowLOD.png", width = 5, height = 8)
+# ggsave("results/proteins_belowLOD.pdf", width = 5, height = 8)
+# ggsave("results/proteins_belowLOD.png", width = 5, height = 8)
 
 # How many proteins have less than 5 missings for the groups of interest (PBS + Strep)
 res_lod %>% filter((under_lod_PBS + under_lod_Strep) < 5) %>% nrow(.) # 71
@@ -147,6 +147,12 @@ res <- res %>% mutate(sig = case_when(
     p.value < 0.001 ~ paste0("***"),
     p.value < 0.01 ~ paste0("**"),
     p.value < 0.05 ~ paste0("*")
+), sigq = case_when(
+    q.value >= 0.05 ~ paste0(""),
+    q.value < 0.0001 ~ paste0("****"),
+    q.value < 0.001 ~ paste0("***"),
+    q.value < 0.01 ~ paste0("**"),
+    q.value < 0.05 ~ paste0("*")
 ))
 
 df.sum <- df4 %>% group_by(Treatment) %>% summarise(across(2:(ncol(.)-1), 
@@ -164,11 +170,13 @@ df5 <- left_join(res, df.sumlong, by = "protein")
 df5_sel <- df5 %>% 
     filter(p.value < 0.05) %>% 
     arrange(q.value)
+df5 %>% filter(q.value < 0.05) # Only Gcg is sig
 qval_sig <- "Gcg"
 pval_sig <- unique(df5_sel$protein)
 
 write_csv2(proteins, "data/proteins_metadata.csv")
 write_csv2(df5, "data/proteins_ttest_diff.csv")
+write_csv2(df5_sel, "data/proteins_ttest_sig.csv")
 write_csv2(df3, "data/proteins_expression_data.csv")
 #write_csv2(df3_scale, "data/proteins_expression_scaled_data.csv")
 

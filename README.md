@@ -27,3 +27,8 @@ Boxplots were drawn with ggplot2 while comparing the two groups with `stat_compa
 
 ## Combination plots
 The three plots above were combined in one plot in the `230425_combineplots.R` script.
+
+## R packages
+To improve reproducibility, we created a lockfile in August 2024 and reran all the analyses to ensure that everything still works. The renv lockfile, activate.R and Rprofile can be found in this repository. Please refer to the renv documentation for instructions on how to use these to recreate the R environment with all packages needed.
+
+

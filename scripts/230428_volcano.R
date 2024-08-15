@@ -54,7 +54,7 @@ df_sum
 #df_sum$rank <- c(c(-53:-1), c(39:1))
 
 set.seed(1234)
-ggplot(df_sum, aes(x = log2fold, y = -log10(pval), color = group, label = delabel)) +
+ggplot(df_sum, aes(x = log2fold, y = -log10(qval), color = group, label = delabel2)) +
     theme_Publication() +
     theme(axis.title = element_text(size = rel(0.8))) +
     geom_hline(aes(yintercept = -log10(0.05)), color = "darkgrey", linetype = "dashed") +
@@ -69,11 +69,10 @@ ggplot(df_sum, aes(x = log2fold, y = -log10(pval), color = group, label = delabe
     scale_color_manual(values = c(ggsci::pal_lancet()(2)), guide = "none") +
     scale_x_continuous(limits = c(-3.5, 3.5), breaks = c(-5:5)) +
     labs(x = "Log2 fold change (Pneumonia+CI - Control+CI)",
-         y = "-log10(p-value)")
+         y = "-log10(q-value)")
 
-ggsave("results/pdf/230428_volcanoplot_pval.pdf", width = 5, height = 5, device = "pdf")
-ggsave("results/svg/230428_volcanoplot_pval.svg", width = 5, height = 5, device = "svg")
-ggsave("results/png/230428_volcanoplot_pval.png", width = 5, height = 5, device = "png")
+ggsave("results/pdf/231212_volcanoplot_qval_Gcg.pdf", width = 3, height = 3, device = "pdf")
+ggsave("results/svg/231212_volcanoplot_qval_Gcg.svg", width = 3, height = 3, device = "svg")
 
 set.seed(1234)
 ggplot(df_sum, aes(x = log2fold, y = -log10(pval), color = group, label = delabel2)) +
@@ -83,19 +82,19 @@ ggplot(df_sum, aes(x = log2fold, y = -log10(pval), color = group, label = delabe
     geom_vline(aes(xintercept = -2), color = "darkgrey", linetype = "dashed") +
     geom_vline(aes(xintercept = 2), color = "darkgrey", linetype = "dashed") +
     #geom_rect(aes(ymin = 0, ymax = 5, xmin = -2, xmax = 2), fill = "lightgrey", color = "lightgrey") +
-    geom_point(alpha = 0.6) +
-    geom_text_repel(size = 3, seed = 24, box.padding = 0.5, min.segment.length = 0,
+    geom_point(alpha = 0.6, size = 2) +
+    geom_text_repel(size = 5, seed = 24, box.padding = 0.5, min.segment.length = 0,
                     point.padding = 0, color = "black", fontface = "bold", force_pull = 0,
                     nudge_x = 0.05, nudge_y = 0.5, segment.color = "grey70",
                     force = 1.5, max.overlaps = 10) +
     scale_color_manual(values = c(ggsci::pal_lancet()(2)), guide = "none") +
     scale_x_continuous(limits = c(-3.5, 3.5), breaks = c(-5:5)) +
-    labs(x = "Log2 fold change (Pneumonia+CI - Control+CI)",
+    labs(x = "Log2 fold change (Pneumonia vs Control)",
          y = "-log10(p-value)")
 
-ggsave("results/pdf/230428_volcanoplot_gluc.pdf", width = 5, height = 5, device = "pdf")
-ggsave("results/svg/230428_volcanoplot_gluc.svg", width = 5, height = 5, device = "svg")
-ggsave("results/png/230428_volcanoplot_gluc.png", width = 5, height = 5, device = "png")
+ggsave("results/pdf/230428_volcanoplot_gluc.pdf", width = 4, height = 4, device = "pdf")
+ggsave("results/svg/230428_volcanoplot_gluc.svg", width = 3, height = 3, device = "svg")
+ggsave("results/png/230428_volcanoplot_gluc.png", width = 3, height = 3, device = "png")
 
 set.seed(1234)
 ggplot(df_sum, aes(x = log2fold, y = -log10(qval), color = group, label = delabel2)) +
@@ -118,4 +117,3 @@ ggplot(df_sum, aes(x = log2fold, y = -log10(qval), color = group, label = delabe
 ggsave("results/pdf/230428_volcanoplot_qval.pdf", width = 5, height = 5, device = "pdf")
 ggsave("results/svg/230428_volcanoplot_qval.svg", width = 5, height = 5, device = "svg")
 ggsave("results/png/230428_volcanoplot_qval.png", width = 5, height = 5, device = "png")
-

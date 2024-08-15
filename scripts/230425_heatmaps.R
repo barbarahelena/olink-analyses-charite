@@ -9,7 +9,8 @@ library(circlize)
 
 ## Data
 df3_scale <- readRDS("data/proteins_expression_scaled_data.RDS") # all protein expression data (scaled to mean 0 and sd 1)
-res <- readRDS("data/proteins_ttest_diff.RDS") %>% select(protein, p.value, q.value, sig) %>% filter(!duplicated(protein))
+res <- readRDS("data/proteins_ttest_diff.RDS") %>% select(protein, p.value, q.value, sig, sigq) %>% filter(!duplicated(protein))
+df5_sel <- rio::import("data/proteins_ttest_sig.csv")
 qval_sig <- "Gcg"
 pval_sig <- unique(df5_sel$protein)
 
@@ -31,10 +32,10 @@ df3_matrix <- t(as.matrix(df3_scale[,3:ncol(df3_scale)])) # matrix of all protei
                 clustering_method_rows = "average",
                 top_annotation = HeatmapAnnotation(Treatment = anno_block(gp = gpar(fill = c("black", "red"))), 
                                                     height = unit(0.2, "cm")),
-                left_annotation = rowAnnotation(pvalue = anno_simple(-log10(res$p.value), 
+                left_annotation = rowAnnotation(pvalue = anno_simple(-log10(res$q.value), 
                                                                      which = 'row',
                                                                      col = pvalue_col_fun, 
-                                                                     pch = res$sig,
+                                                                     pch = res$sigq,
                                                                      pt_size = unit(1, "snpc")*0.5
                                                                      ),
                                                 annotation_name_side = "bottom",
@@ -47,15 +48,15 @@ df3_matrix <- t(as.matrix(df3_scale[,3:ncol(df3_scale)])) # matrix of all protei
                 row_dend_side = "right",
                 row_names_gp = grid::gpar(fontsize = 7)))
 
-lgd_pvalue = Legend(title = "p-value", col_fun = pvalue_col_fun, at = c(0, 1, 2, 3), 
+lgd_pvalue = Legend(title = "q-value", col_fun = pvalue_col_fun, at = c(0, 1, 2, 3), 
                     labels = c("1", "0.1", "0.01", "0.001"))
-lgd_sig = Legend(pch = "*", type = "points", labels = "< 0.05")
+lgd_sig = Legend(pch = "**", type = "points", labels = "< 0.01")
 pl1_anno <- draw(pl1, annotation_legend_list = list(lgd_pvalue, lgd_sig))
 
-pdf("results/pdf/230424_heatmap_all.pdf", width = 8, height = 10)
+pdf("results/pdf/231212_heatmap_all.pdf", width = 8, height = 10)
 pl1_anno
 dev.off()
-svg("results/svg/230424_heatmap_all.svg", width = 8, height = 10)
+svg("results/svg/231212_heatmap_all.svg", width = 8, height = 10)
 pl1_anno
 dev.off()
 
